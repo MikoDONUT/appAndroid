@@ -12,7 +12,7 @@
     android:text="NAPOLITAINE"
     android:id="@+id/button1"
         android:layout_weight="1"/>
-    />
+
 
     <Button
     android:layout_width="match_parent"
@@ -20,7 +20,7 @@
     android:text="ROYALE"
     android:id="@+id/button2"
         android:layout_weight="1"/>
-    />
+
 
     <Button
     android:layout_width="match_parent"
@@ -28,7 +28,7 @@
     android:text="QUATRE FROMAGES"
     android:id="@+id/button3"
         android:layout_weight="1"/>
-    />
+
 
 
     <Button
@@ -37,7 +37,7 @@
     android:text="MONTAGNARDE"
     android:id="@+id/button4"
         android:layout_weight="1"/>
-    />
+
 
     <Button
     android:layout_width="match_parent"
@@ -45,7 +45,7 @@
     android:text="RACLETTE"
     android:id="@+id/button5"
         android:layout_weight="1"/>
-    />
+
 
     <Button
     android:layout_width="match_parent"
@@ -53,23 +53,26 @@
     android:text="HAWAI"
     android:id="@+id/button6"
         android:layout_weight="1"/>
-    />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="PANNA COTA"
             android:id="@+id/button7"
             android:layout_weight="1"/>
+
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="TIRAMISU"
             android:id="@+id/button8"
             android:layout_weight="1"/>
+
     </LinearLayout>
 
 </LinearLayout>
