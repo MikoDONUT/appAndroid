@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Pizza</string>
+    //Nom application
+
+    //definition des clés des boutons
+    <string name="cle_But1">CLE_BUT1</string>
+    <string name="cle_But2">CLE_BUT2</string>
+    <string name="cle_But3">CLE_BUT3</string>
+    <string name="cle_But4">CLE_BUT4</string>
+    <string name="cle_But5">CLE_BUT5</string>
+    <string name="cle_But6">CLE_BUT6</string>
+    <string name="cle_But7">CLE_BUT7</string>
+    <string name="cle_But8">CLE_BUT8</string>
+
 </resources>

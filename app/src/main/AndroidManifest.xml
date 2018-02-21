@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.matias.pizza">
 
@@ -7,5 +8,24 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" />
+        android:theme="@style/AppTheme">
+
+        //Definition de l'activité de démarrage par défaut (ici PizzeriaMainActivity)
+        <activity
+            android:name=".PizzeriaMainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        //Activité PizzeriaMainActivity2
+        <activity android:name=".PizzeriaMainActivity2">
+
+        </activity
+            >
+    </application>
+
 </manifest>
