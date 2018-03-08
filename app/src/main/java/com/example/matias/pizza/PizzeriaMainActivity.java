@@ -1,14 +1,17 @@
 package com.example.matias.pizza;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class PizzeriaMainActivity extends AppCompatActivity implements View.OnClickListener {
 
-
+private final String TAG = getClass().getName();
 
     private Button button1;
     private Button button2;
@@ -18,6 +21,7 @@ public class PizzeriaMainActivity extends AppCompatActivity implements View.OnCl
     private Button button6;
     private Button button7;
     private Button button8;
+    private TextView text1;
 
     //on crée des click static pour que leur valeurs ne se réinitialise pas au passage ecran vertical/horizontal
     static int click1;
@@ -30,10 +34,27 @@ public class PizzeriaMainActivity extends AppCompatActivity implements View.OnCl
     static int click8;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pizzeria_main);
+
+        text1 = (TextView) findViewById(R.id.text1);
+
+
+
+        Intent i = getIntent();
+        int numtab = i.getIntExtra(getResources().getString(R.string.cle_ValTable), -1000);
+
+        if(numtab == -1000){
+            Log.e(TAG, "error");
+            finish();
+            System.exit(-1);
+        }
+        text1.setText("Commande de la table n° " + numtab); //modification du texte
+
+
 
         //Definition de chaque bouton par rapport à l'ID du layout
         button1 = (Button) findViewById(R.id.button1);

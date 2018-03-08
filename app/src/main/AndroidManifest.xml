@@ -14,16 +14,16 @@
         <activity
             android:name=".PizzeriaMainActivity"
             android:label="@string/app_name">
+
+        </activity>
+
+        //Activité PizzeriaMainActivity2
+        <activity android:name=".PizzeriaMainActivity2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        //Activité PizzeriaMainActivity2
-        <activity android:name=".PizzeriaMainActivity2">
-
         </activity
             >
     </application>

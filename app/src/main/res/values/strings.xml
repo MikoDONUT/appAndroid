@@ -2,7 +2,7 @@
     <string name="app_name">Pizza</string>
     //Nom application
 
-    //definition des clés des boutons
+    //definition des clés des du main_Actvity
     <string name="cle_But1">CLE_BUT1</string>
     <string name="cle_But2">CLE_BUT2</string>
     <string name="cle_But3">CLE_BUT3</string>
@@ -12,4 +12,7 @@
     <string name="cle_But7">CLE_BUT7</string>
     <string name="cle_But8">CLE_BUT8</string>
 
+    //definition des clés des du main_Actvity
+    <string name="cle_ValTable">CLE_VALTABLE</string>
+    <string name="valTable">Commande de la table n°</string>
 </resources>
