@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -29,6 +30,7 @@ public class PizzeriaMainActivity extends AppCompatActivity implements View.OnCl
     private Button button7;
     private Button button8;
     private TextView text1;
+    private ProgressBar progressBar1;
 
     //on crée des click static pour que leur valeurs ne se réinitialise pas au passage ecran vertical/horizontal
     static int click1;
@@ -50,9 +52,7 @@ public class PizzeriaMainActivity extends AppCompatActivity implements View.OnCl
 
 
         Intent i = getIntent();
-        int numtab;
-        numtab = (int) i.getIntExtra(getResources().getString(R.string.cle_ValTable), -1000);
-
+        int numtab = i.getIntExtra(getResources().getString(R.string.cle_ValTable), -1000);
 
         if (numtab == -1000) {
             Log.e(TAG, "error");
@@ -87,6 +87,8 @@ public class PizzeriaMainActivity extends AppCompatActivity implements View.OnCl
 
         button8 = (Button) findViewById(R.id.button8);
         button8.setOnClickListener(this);
+
+        progressBar1 = (ProgressBar) findViewById(R.id.pbr1);
 
 
         if (savedInstanceState != null) {
@@ -126,28 +128,28 @@ public class PizzeriaMainActivity extends AppCompatActivity implements View.OnCl
                 click1++;
                 button1.setText("NAPOLITAINE " + ": " + click1);
                 nomCommande = (String) button1.getText();
-                Commande c1 = new Commande(nomCommande);
+                Commande c1 = new Commande(R.string.cle_ValTable, nomCommande);
                 c1.execute();
                 break;
             case R.id.button2:
                 click2++;
                 button2.setText("ROYALE " + ": " + click2);
                 nomCommande = (String) button2.getText();
-                Commande c2 = new Commande(nomCommande);
+                Commande c2 = new Commande(R.string.cle_ValTable, nomCommande);
                 c2.execute();
                 break;
             case R.id.button3:
                 click3++;
                 button3.setText("QUATRE FROMAGES " + ": " + click3);
                 nomCommande = (String) button3.getText();
-                Commande c3 = new Commande(nomCommande);
+                Commande c3 = new Commande(R.string.cle_ValTable, nomCommande);
                 c3.execute();
                 break;
             case R.id.button4:
                 click4++;
                 button4.setText("MONTAGNARDE " + ": " + click4);
                 nomCommande = (String) button4.getText();
-                Commande c4 = new Commande(nomCommande);
+                Commande c4 = new Commande(R.string.cle_ValTable, nomCommande);
                 c4.execute();
                 break;
             case R.id.button5:
@@ -161,21 +163,21 @@ public class PizzeriaMainActivity extends AppCompatActivity implements View.OnCl
                 click6++;
                 button6.setText("HAWAI " + ": " + click6);
                 nomCommande = (String) button6.getText();
-                Commande c6 = new Commande(nomCommande);
+                Commande c6 = new Commande(R.string.cle_ValTable, nomCommande);
                 c6.execute();
                 break;
             case R.id.button7:
                 click7++;
                 button7.setText("PANNA COTA " + ": " + click7);
                 nomCommande = (String) button7.getText();
-                Commande c7 = new Commande(nomCommande);
+                Commande c7 = new Commande(R.string.cle_ValTable, nomCommande);
                 c7.execute();
                 break;
             case R.id.button8:
                 click8++;
                 button8.setText("TIRAMISU " + ": " + click8);
                 nomCommande = (String) button8.getText();
-                Commande c8 = new Commande(nomCommande);
+                Commande c8 = new Commande(R.string.cle_ValTable, nomCommande);
                 c8.execute();
                 break;
         }
@@ -199,19 +201,19 @@ public class PizzeriaMainActivity extends AppCompatActivity implements View.OnCl
 
     }
 
-    private class Commande extends AsyncTask<String, String, String> {
+    private class Commande extends AsyncTask<Void, Void, Void> {
         private final int wait = (int) (Math.random() * (120000 - 60000 + 1000)) + 60000; //temps compris entre 1 et 2 minutes
         private final int number = 6;
         private int port = 9874;
         private String numTable = "";
         private String nomPlat = "";
 
-            public Commande(){
-                if(Integer.parseInt(numTable)>= 1 && Integer.parseInt(numTable)<= 9){
-                this.numTable= "0" + numTable;
+            public Commande(int cle_ValTable, String nomCommande){
+                if(cle_ValTable >= 1 && cle_ValTable <= 9){
+                this.numTable= "0" + cle_ValTable;
                 }
                 else{
-                    this.numTable= numTable;
+                    this.numTable= Integer.toString(cle_ValTable);
                 }
                 this.nomPlat= nomPlat;
 
@@ -220,7 +222,7 @@ public class PizzeriaMainActivity extends AppCompatActivity implements View.OnCl
         @Override
         //avant l’exécution de la tâche
         protected void onPreExecute() {
-
+            progressBar1.setVisibility(View.VISIBLE);   //on affiche le chargement
         }
 
         @Override
@@ -244,7 +246,7 @@ public class PizzeriaMainActivity extends AppCompatActivity implements View.OnCl
         //après l’exécution de la tâche
         @Override
         protected void onPostExecute(Integer res) {
-
+            progressBar1.setVisibility(View.INVISIBLE);     ////on désaffiche le chargement
         }
     }
 
