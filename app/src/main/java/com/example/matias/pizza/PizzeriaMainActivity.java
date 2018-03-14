@@ -41,6 +41,7 @@ public class PizzeriaMainActivity extends AppCompatActivity implements View.OnCl
     static int click6;
     static int click7;
     static int click8;
+    private int numtab;
 
 
     @Override
@@ -52,7 +53,7 @@ public class PizzeriaMainActivity extends AppCompatActivity implements View.OnCl
 
 
         Intent i = getIntent();
-        int numtab = i.getIntExtra(getResources().getString(R.string.cle_ValTable), -1000);
+        numtab = i.getIntExtra(getResources().getString(R.string.cle_ValTable), -1000);
 
         if (numtab == -1000) {
             Log.e(TAG, "error");
@@ -121,64 +122,55 @@ public class PizzeriaMainActivity extends AppCompatActivity implements View.OnCl
     @SuppressLint("SetTextI18n")
     @Override
     public void onClick(View v) {
-        String nomCommande = "";
 
         switch (v.getId()) {
             case R.id.button1:
                 click1++;
                 button1.setText("NAPOLITAINE " + ": " + click1);
-                nomCommande = (String) button1.getText();
-                Commande c1 = new Commande(R.string.cle_ValTable, nomCommande);
-                c1.execute();
+                Commande c1 = new Commande();
+                c1.execute(numtab, "Napolitaine");
                 break;
             case R.id.button2:
                 click2++;
                 button2.setText("ROYALE " + ": " + click2);
-                nomCommande = (String) button2.getText();
-                Commande c2 = new Commande(R.string.cle_ValTable, nomCommande);
-                c2.execute();
+                Commande c2 = new Commande();
+                c2.execute(numtab, "Royale");
                 break;
             case R.id.button3:
                 click3++;
                 button3.setText("QUATRE FROMAGES " + ": " + click3);
-                nomCommande = (String) button3.getText();
-                Commande c3 = new Commande(R.string.cle_ValTable, nomCommande);
-                c3.execute();
+                Commande c3 = new Commande();
+                c3.execute(numtab, "QuatreFromage");
                 break;
             case R.id.button4:
                 click4++;
                 button4.setText("MONTAGNARDE " + ": " + click4);
-                nomCommande = (String) button4.getText();
-                Commande c4 = new Commande(R.string.cle_ValTable, nomCommande);
-                c4.execute();
+                Commande c4 = new Commande();
+                c4.execute(numtab, "Montagnarde");
                 break;
             case R.id.button5:
                 click5++;
                 button5.setText("RACLETTE " + ": " + click5);
-                nomCommande = (String) button5.getText();
-                Commande c5 = new Commande(numtab, nomCommande);
-                c5.execute();
+                Commande c5 = new Commande();
+                c5.execute(numtab, "Raclette");
                 break;
             case R.id.button6:
                 click6++;
                 button6.setText("HAWAI " + ": " + click6);
-                nomCommande = (String) button6.getText();
-                Commande c6 = new Commande(R.string.cle_ValTable, nomCommande);
-                c6.execute();
+                Commande c6 = new Commande();
+                c6.execute(numtab, "Hawai");
                 break;
             case R.id.button7:
                 click7++;
                 button7.setText("PANNA COTA " + ": " + click7);
-                nomCommande = (String) button7.getText();
-                Commande c7 = new Commande(R.string.cle_ValTable, nomCommande);
-                c7.execute();
+                Commande c7 = new Commande();
+                c7.execute(numtab, "PannaCota");
                 break;
             case R.id.button8:
                 click8++;
                 button8.setText("TIRAMISU " + ": " + click8);
-                nomCommande = (String) button8.getText();
-                Commande c8 = new Commande(R.string.cle_ValTable, nomCommande);
-                c8.execute();
+                Commande c8 = new Commande();
+                c8.execute(numtab, "Tiramisu");
                 break;
         }
 
@@ -201,23 +193,10 @@ public class PizzeriaMainActivity extends AppCompatActivity implements View.OnCl
 
     }
 
-    private class Commande extends AsyncTask<Void, Void, Void> {
+    private class Commande extends AsyncTask<String, String, Void> {
         private final int wait = (int) (Math.random() * (120000 - 60000 + 1000)) + 60000; //temps compris entre 1 et 2 minutes
-        private final int number = 6;
         private int port = 9874;
-        private String numTable = "";
-        private String nomPlat = "";
 
-            public Commande(int cle_ValTable, String nomCommande){
-                if(cle_ValTable >= 1 && cle_ValTable <= 9){
-                this.numTable= "0" + cle_ValTable;
-                }
-                else{
-                    this.numTable= Integer.toString(cle_ValTable);
-                }
-                this.nomPlat= nomPlat;
-
-            }
 
         @Override
         //avant l’exécution de la tâche
@@ -227,14 +206,22 @@ public class PizzeriaMainActivity extends AppCompatActivity implements View.OnCl
 
         @Override
         //code exécuter par la tâche
-        protected Integer doInBackground(Void... voids) throws InterruptedException, IOException {
-            Socket socket = new Socket("chadok.info", port);  //création de socket faisant la connexion client/serveur
-            PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        protected Integer doInBackground(String... strings) throws InterruptedException, IOException {
+            try() {
+                Socket socket = new Socket("chadok.info", port);  //création de socket faisant la connexion client/serveur
+                PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
+                BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-            writer.append(CharSequence numTable + nomPlat);    //envoie du message au serveur
-            Thread.sleep(wait);     //attente entre une et deux minutes
-            reader.readLine();  //lecture des message envoyer dans le socket par le serveur
+                writer.append(CharSequence strings[0]);    //envoie du message au serveur
+                Thread.sleep(wait);     //attente entre une et deux minutes
+                reader.readLine();  //lecture des message envoyer dans le socket par le serveur
+            }
+            catch(){
+                //message d'erreur
+            }
+            finally{
+                socket.close();
+            }
         }
 
         //pendant l'exécution de la tâche, montre la progression de la tache
@@ -246,7 +233,7 @@ public class PizzeriaMainActivity extends AppCompatActivity implements View.OnCl
         //après l’exécution de la tâche
         @Override
         protected void onPostExecute(Integer res) {
-            progressBar1.setVisibility(View.INVISIBLE);     ////on désaffiche le chargement
+            progressBar1.setVisibility(View.INVISIBLE);     ////on enleve le chargement
         }
     }
 
