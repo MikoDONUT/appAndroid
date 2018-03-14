@@ -128,49 +128,49 @@ public class PizzeriaMainActivity extends AppCompatActivity implements View.OnCl
                 click1++;
                 button1.setText("NAPOLITAINE " + ": " + click1);
                 Commande c1 = new Commande();
-                c1.execute(numtab, "Napolitaine");
+                c1.execute(numtab + "Napolitaine");
                 break;
             case R.id.button2:
                 click2++;
                 button2.setText("ROYALE " + ": " + click2);
                 Commande c2 = new Commande();
-                c2.execute(numtab, "Royale");
+                c2.execute(numtab + "Royale");
                 break;
             case R.id.button3:
                 click3++;
                 button3.setText("QUATRE FROMAGES " + ": " + click3);
                 Commande c3 = new Commande();
-                c3.execute(numtab, "QuatreFromage");
+                c3.execute(numtab + "QuatreFromage");
                 break;
             case R.id.button4:
                 click4++;
                 button4.setText("MONTAGNARDE " + ": " + click4);
                 Commande c4 = new Commande();
-                c4.execute(numtab, "Montagnarde");
+                c4.execute(numtab + "Montagnarde");
                 break;
             case R.id.button5:
                 click5++;
                 button5.setText("RACLETTE " + ": " + click5);
                 Commande c5 = new Commande();
-                c5.execute(numtab, "Raclette");
+                c5.execute(numtab + "Raclette");
                 break;
             case R.id.button6:
                 click6++;
                 button6.setText("HAWAI " + ": " + click6);
                 Commande c6 = new Commande();
-                c6.execute(numtab, "Hawai");
+                c6.execute(numtab + "Hawai");
                 break;
             case R.id.button7:
                 click7++;
                 button7.setText("PANNA COTA " + ": " + click7);
                 Commande c7 = new Commande();
-                c7.execute(numtab, "PannaCota");
+                c7.execute(numtab + "PannaCota");
                 break;
             case R.id.button8:
                 click8++;
                 button8.setText("TIRAMISU " + ": " + click8);
                 Commande c8 = new Commande();
-                c8.execute(numtab, "Tiramisu");
+                c8.execute(numtab + "Tiramisu");
                 break;
         }
 
@@ -199,42 +199,40 @@ public class PizzeriaMainActivity extends AppCompatActivity implements View.OnCl
 
 
         @Override
-        //avant l’exécution de la tâche
-        protected void onPreExecute() {
-            progressBar1.setVisibility(View.VISIBLE);   //on affiche le chargement
-        }
-
-        @Override
         //code exécuter par la tâche
-        protected Integer doInBackground(String... strings) throws InterruptedException, IOException {
-            try() {
-                Socket socket = new Socket("chadok.info", port);  //création de socket faisant la connexion client/serveur
+        protected Void doInBackground(String... strings) {
+            Socket socket = null;
+
+            try{
+                socket = new Socket("chadok.info", port);  //création de socket faisant la connexion client/serveur
                 PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
                 BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
-                writer.append(CharSequence strings[0]);    //envoie du message au serveur
-                Thread.sleep(wait);     //attente entre une et deux minutes
-                reader.readLine();  //lecture des message envoyer dans le socket par le serveur
+                writer.println(strings[0]);
+                //writer.append(strings[0]);    //envoie du message au serveur
+                String retour = reader.readLine();  //lecture des message envoyer dans le socket par le serveur
+                onProgressUpdate(retour)
             }
-            catch(){
-                //message d'erreur
+            catch(IOException e){
+                e.printStackTrace();
             }
             finally{
-                socket.close();
+                if(socket != null) {
+                    try {
+                        socket.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
+            return null;
         }
 
-        //pendant l'exécution de la tâche, montre la progression de la tache
         @Override
-        protected void onProgressUpdate(Integer... counts) {
-
+        protected void onProgressUpdate(String... messageRetour) {
+            text1.setText(messageRetour[0]);
         }
 
-        //après l’exécution de la tâche
-        @Override
-        protected void onPostExecute(Integer res) {
-            progressBar1.setVisibility(View.INVISIBLE);     ////on enleve le chargement
-        }
+
     }
 
 
