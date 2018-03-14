@@ -14,5 +14,5 @@
 
     //definition des clés des du main_Actvity
     <string name="cle_ValTable">CLE_VALTABLE</string>
-    <string name="valTable">Ordering table n°</string>
+    <string name="valTable">Commande de la table n°</string>
 </resources>

@@ -8,14 +8,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
 
 public class PizzeriaMainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -196,7 +190,7 @@ public class PizzeriaMainActivity extends AppCompatActivity implements View.OnCl
         outState.putInt(getResources().getString(R.string.cle_But8), click8);
 
     }
-
+/*
     private class Commande extends AsyncTask<String, String, Void> {
         private final int wait = (int) (Math.random() * (120000 - 60000 + 1000)) + 60000; //temps compris entre 1 et 2 minutes
         private int port = 9874;
@@ -253,5 +247,5 @@ public class PizzeriaMainActivity extends AppCompatActivity implements View.OnCl
 
     }
 
-
+*/
 }

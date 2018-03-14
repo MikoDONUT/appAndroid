@@ -82,7 +82,18 @@
             android:id="@+id/button8"
             android:layout_weight="1"/>
 
+
     </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:text="Réinitialiser"
+        android:background="@color/colorYellow"
+        android:textSize="15dp"
+        android:id="@+id/reinit"/>
+
 
 </LinearLayout>
 
