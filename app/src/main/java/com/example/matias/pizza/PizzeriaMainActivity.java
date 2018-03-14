@@ -29,8 +29,8 @@ public class PizzeriaMainActivity extends AppCompatActivity implements View.OnCl
     private Button button6;
     private Button button7;
     private Button button8;
-    private TextView text1;
-    private ProgressBar progressBar1;
+    public static TextView text1;
+
 
     //on crée des click static pour que leur valeurs ne se réinitialise pas au passage ecran vertical/horizontal
     static int click1;
@@ -42,6 +42,7 @@ public class PizzeriaMainActivity extends AppCompatActivity implements View.OnCl
     static int click7;
     static int click8;
     private int numtab;
+    private String numtab2; //valeur prenant un 0 devant si 10> numtab > 0 pour ainsi envoyer sous le bon format le numtab au serveur
 
 
     @Override
@@ -89,8 +90,6 @@ public class PizzeriaMainActivity extends AppCompatActivity implements View.OnCl
         button8 = (Button) findViewById(R.id.button8);
         button8.setOnClickListener(this);
 
-        progressBar1 = (ProgressBar) findViewById(R.id.pbr1);
-
 
         if (savedInstanceState != null) {
 
@@ -122,25 +121,30 @@ public class PizzeriaMainActivity extends AppCompatActivity implements View.OnCl
     @SuppressLint("SetTextI18n")
     @Override
     public void onClick(View v) {
-
+        if(numtab>0 && numtab <10){
+            numtab2 = "0" + numtab;
+        }
+        else {
+            numtab2 = String.valueOf(numtab);
+        }
         switch (v.getId()) {
             case R.id.button1:
                 click1++;
                 button1.setText("NAPOLITAINE " + ": " + click1);
                 Commande c1 = new Commande();
-                c1.execute(numtab + "Napolitaine");
+                c1.execute(numtab2 + "Napolitaine");
                 break;
             case R.id.button2:
                 click2++;
                 button2.setText("ROYALE " + ": " + click2);
                 Commande c2 = new Commande();
-                c2.execute(numtab + "Royale");
+                c2.execute(numtab2 + "Royale");
                 break;
             case R.id.button3:
                 click3++;
                 button3.setText("QUATRE FROMAGES " + ": " + click3);
                 Commande c3 = new Commande();
-                c3.execute(numtab + "QuatreFromage");
+                c3.execute(numtab2 + "QuatreFromage");
                 break;
             case R.id.button4:
                 click4++;
@@ -152,25 +156,25 @@ public class PizzeriaMainActivity extends AppCompatActivity implements View.OnCl
                 click5++;
                 button5.setText("RACLETTE " + ": " + click5);
                 Commande c5 = new Commande();
-                c5.execute(numtab + "Raclette");
+                c5.execute(numtab2 + "Raclette");
                 break;
             case R.id.button6:
                 click6++;
                 button6.setText("HAWAI " + ": " + click6);
                 Commande c6 = new Commande();
-                c6.execute(numtab + "Hawai");
+                c6.execute(numtab2 + "Hawai");
                 break;
             case R.id.button7:
                 click7++;
                 button7.setText("PANNA COTA " + ": " + click7);
                 Commande c7 = new Commande();
-                c7.execute(numtab + "PannaCota");
+                c7.execute(numtab2 + "PannaCota");
                 break;
             case R.id.button8:
                 click8++;
                 button8.setText("TIRAMISU " + ": " + click8);
                 Commande c8 = new Commande();
-                c8.execute(numtab + "Tiramisu");
+                c8.execute(numtab2 + "Tiramisu");
                 break;
         }
 
@@ -208,9 +212,23 @@ public class PizzeriaMainActivity extends AppCompatActivity implements View.OnCl
                 PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
                 BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 writer.println(strings[0]);
-                //writer.append(strings[0]);    //envoie du message au serveur
-                String retour = reader.readLine();  //lecture des message envoyer dans le socket par le serveur
-                onProgressUpdate(retour)
+                //writer.append(strings[0]);    //envoie du message au serveur mais sans retour à la ligne
+                String retour1 = reader.readLine();  //lecture des message envoyer dans le socket par le serveur
+                if (retour1 != null) {      //bien verifier à ce que reader ne soit pas vide
+                    System.out.println("Message du serveur : " + retour1);
+                    //onProgressUpdate(retour1);    //lance l'affichage mais redemarre l'application
+                    publishProgress(retour1);
+                }
+
+                String s= "";
+                //readLine a un timeout integré, ce qui fait que s'il ne reçoit
+                // aucune ligne de caractère la variable ne contiendra rien, c'est pour ça qu'avec while()
+                //on oblige à attendre à ce que "s" ait un contenue
+                while(s.equals("")){
+                    s = reader.readLine();
+                }
+                publishProgress(s);
+
             }
             catch(IOException e){
                 e.printStackTrace();
@@ -229,7 +247,7 @@ public class PizzeriaMainActivity extends AppCompatActivity implements View.OnCl
 
         @Override
         protected void onProgressUpdate(String... messageRetour) {
-            text1.setText(messageRetour[0]);
+            PizzeriaMainActivity.text1.setText(messageRetour[0]);
         }
 
 
