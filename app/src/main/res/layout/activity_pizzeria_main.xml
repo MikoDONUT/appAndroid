@@ -13,87 +13,10 @@
         android:id="@+id/text1"/>
 
 
-
-
-    <Button
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="NAPOLITAINE"
-    android:id="@+id/button1"
-        android:layout_weight="1"/>
-
-
-    <Button
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="ROYALE"
-    android:id="@+id/button2"
-        android:layout_weight="1"/>
-
-
-    <Button
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="QUATRE FROMAGES"
-    android:id="@+id/button3"
-        android:layout_weight="1"/>
-
-
-
-    <Button
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="MONTAGNARDE"
-    android:id="@+id/button4"
-        android:layout_weight="1"/>
-
-
-    <Button
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="RACLETTE"
-    android:id="@+id/button5"
-        android:layout_weight="1"/>
-
-
-    <Button
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="HAWAI"
-    android:id="@+id/button6"
-        android:layout_weight="1"/>
-
-    <LinearLayout
-        android:orientation="horizontal"
+    <FrameLayout
+        android:id="@+id/frag1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="PANNA COTA"
-            android:id="@+id/button7"
-            android:layout_weight="1"/>
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="TIRAMISU"
-            android:id="@+id/button8"
-            android:layout_weight="1"/>
-
-
-    </LinearLayout>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.5"
-        android:text="Réinitialiser"
-        android:background="@color/colorYellow"
-        android:textSize="15dp"
-        android:id="@+id/reinit"/>
-
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
 

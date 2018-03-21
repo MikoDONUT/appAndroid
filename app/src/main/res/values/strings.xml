@@ -15,4 +15,7 @@
     //definition des clés des du main_Actvity
     <string name="cle_ValTable">CLE_VALTABLE</string>
     <string name="valTable">Ordering table n°</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
