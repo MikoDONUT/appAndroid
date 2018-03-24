@@ -9,9 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-
-
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -25,6 +22,7 @@ public class BlankFragment extends Fragment implements View.OnClickListener {
     private Button button6;
     private Button button7;
     private Button button8;
+    private Button buttonPers;
 
 
     //on crée des click static pour que leur valeurs ne se réinitialise pas au passage ecran vertical/horizontal
@@ -57,7 +55,13 @@ public class BlankFragment extends Fragment implements View.OnClickListener {
 
         numtab = PizzeriaMainActivity.numtab;
 
+
+
         //Definition de chaque bouton par rapport à l'ID du layout
+
+        buttonPers = (Button) v.findViewById(R.id.buttonPers);
+        buttonPers.setOnClickListener(this);
+
         button1 = (Button) v.findViewById(R.id.button1);
         //Liaison à l'évenement click
         button1.setOnClickListener(this);

@@ -45,10 +45,18 @@ public class PizzeriaMainActivity extends AppCompatActivity  {
         }
         text1.setText("Commande de la table n° " + numtab); //modification du texte
 
-        BlankFragment frag = new BlankFragment();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.add(R.id.frag1, frag); //null à la place de frag si on veut que ca disparaisse
+        BlankFragment fragment1 = new BlankFragment();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction(); //création de la transaction
+        transaction.add(R.id.frag1, fragment1); //null à la place de frag si on veut que ca disparaisse
         transaction.commit();       //contenue du fragment apparait
+
+        /*
+        BlankFragment fragment2 = new BlankFragment();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction(); //création de la transaction
+        transaction.add(R.id.frag2, fragment2); //null à la place de frag si on veut que ca disparaisse
+        transaction.commit();       //contenue du fragment apparait
+         */
+
 
     }
 }
