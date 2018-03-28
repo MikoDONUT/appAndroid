@@ -1,6 +1,7 @@
 package com.example.matias.pizza;
 
 import android.annotation.SuppressLint;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -14,16 +15,12 @@ import android.widget.TextView;
 import android.app.Fragment;
 
 
-public class PizzeriaMainActivity extends AppCompatActivity  {
+public class PizzeriaMainActivity extends AppCompatActivity /*implements View.OnClickListener*/{
 
-    private FrameLayout fragment1;
-
+    public static BlankFragment fragment1 = new BlankFragment();
     private final String TAG = getClass().getName();
 
-
     public static TextView text1;
-
-
 
     public static int numtab;   //en static pour qu'il soit disponible aussi sur BlankFragment
 
@@ -45,18 +42,14 @@ public class PizzeriaMainActivity extends AppCompatActivity  {
         }
         text1.setText("Commande de la table n° " + numtab); //modification du texte
 
-        BlankFragment fragment1 = new BlankFragment();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction(); //création de la transaction
-        transaction.add(R.id.frag1, fragment1); //null à la place de frag si on veut que ca disparaisse
-        transaction.commit();       //contenue du fragment apparait
 
-        /*
-        BlankFragment fragment2 = new BlankFragment();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction(); //création de la transaction
-        transaction.add(R.id.frag2, fragment2); //null à la place de frag si on veut que ca disparaisse
-        transaction.commit();       //contenue du fragment apparait
-         */
+        //Definition et liaison au OnClickListener du bouton de pizzapersonnalisé
+        //qui une fois qu'on a cliqué sur ce bouton fait apparaitre les ingrédients de la pizza au choix
 
+        FragmentTransaction transaction = getFragmentManager().beginTransaction(); //création de la transaction
+        transaction.add(R.id.fragment_container, fragment1);
+        transaction.commit();       //contenue du fragment apparait
 
     }
+
 }

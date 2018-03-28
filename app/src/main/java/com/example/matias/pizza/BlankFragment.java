@@ -3,6 +3,7 @@ package com.example.matias.pizza;
 
 import android.annotation.SuppressLint;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +23,7 @@ public class BlankFragment extends Fragment implements View.OnClickListener {
     private Button button6;
     private Button button7;
     private Button button8;
-    private Button buttonPers;
+    public static Button buttonPers;
 
 
     //on crée des click static pour que leur valeurs ne se réinitialise pas au passage ecran vertical/horizontal
@@ -35,7 +36,7 @@ public class BlankFragment extends Fragment implements View.OnClickListener {
     static int click7;
     static int click8;
 
-    int numtab;
+    public static int numtab;
 
     private String numtab2; //valeur prenant un 0 devant si 10> numtab > 0 pour ainsi envoyer sous le bon format le numtab au serveur
 
@@ -61,6 +62,7 @@ public class BlankFragment extends Fragment implements View.OnClickListener {
 
         buttonPers = (Button) v.findViewById(R.id.buttonPers);
         buttonPers.setOnClickListener(this);
+
 
         button1 = (Button) v.findViewById(R.id.button1);
         //Liaison à l'évenement click
@@ -131,6 +133,15 @@ public class BlankFragment extends Fragment implements View.OnClickListener {
             numtab2 = String.valueOf(numtab);
         }
         switch (v.getId()) {
+
+            case R.id.buttonPers:
+                BlankFragment2 fragment2 = new BlankFragment2();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction(); //création de la transaction
+                transaction.replace(R.id.fragment_container, fragment2);
+                transaction.addToBackStack(null);
+                transaction.commit();       //contenue du fragment apparait
+                break;
+
             case R.id.button1:
                 click1++;
                 button1.setText("NAPOLITAINE " + ": " + click1);
@@ -139,43 +150,43 @@ public class BlankFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.button2:
                 click2++;
-                button2.setText("ROYALE " + ": " + click2);
+                button2.setText("ROYALE : " + click2);
                 Commande c2 = new Commande();
                 c2.execute(numtab2 + "Royale");
                 break;
             case R.id.button3:
                 click3++;
-                button3.setText("QUATRE FROMAGES " + ": " + click3);
+                button3.setText("QUATRE FROMAGES : " + click3);
                 Commande c3 = new Commande();
                 c3.execute(numtab2 + "QuatreFromage");
                 break;
             case R.id.button4:
                 click4++;
-                button4.setText("MONTAGNARDE " + ": " + click4);
+                button4.setText("MONTAGNARDE : " + click4);
                 Commande c4 = new Commande();
                 c4.execute(numtab2 + "Montagnarde");
                 break;
             case R.id.button5:
                 click5++;
-                button5.setText("RACLETTE " + ": " + click5);
+                button5.setText("RACLETTE : " + click5);
                 Commande c5 = new Commande();
                 c5.execute(numtab2 + "Raclette");
                 break;
             case R.id.button6:
                 click6++;
-                button6.setText("HAWAI " + ": " + click6);
+                button6.setText("HAWAI : " + click6);
                 Commande c6 = new Commande();
                 c6.execute(numtab2 + "Hawai");
                 break;
             case R.id.button7:
                 click7++;
-                button7.setText("PANNA COTA " + ": " + click7);
+                button7.setText("PANNA COTA : " + click7);
                 Commande c7 = new Commande();
                 c7.execute(numtab2 + "PannaCota");
                 break;
             case R.id.button8:
                 click8++;
-                button8.setText("TIRAMISU " + ": " + click8);
+                button8.setText("TIRAMISU : " + click8);
                 Commande c8 = new Commande();
                 c8.execute(numtab2 + "Tiramisu");
                 break;
