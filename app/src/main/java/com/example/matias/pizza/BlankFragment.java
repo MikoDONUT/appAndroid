@@ -24,6 +24,7 @@ public class BlankFragment extends Fragment implements View.OnClickListener {
     private Button button7;
     private Button button8;
     public static Button buttonPers;
+    private Button reinit;
 
 
     //on crée des click static pour que leur valeurs ne se réinitialise pas au passage ecran vertical/horizontal
@@ -59,6 +60,9 @@ public class BlankFragment extends Fragment implements View.OnClickListener {
 
 
         //Definition de chaque bouton par rapport à l'ID du layout
+
+        reinit = (Button) v.findViewById(R.id.reinit);
+        reinit.setOnClickListener(this);
 
         buttonPers = (Button) v.findViewById(R.id.buttonPers);
         buttonPers.setOnClickListener(this);
@@ -189,6 +193,16 @@ public class BlankFragment extends Fragment implements View.OnClickListener {
                 button8.setText("TIRAMISU : " + click8);
                 Commande c8 = new Commande();
                 c8.execute(numtab2 + "Tiramisu");
+                break;
+            case R.id.reinit:
+                click1 = 0;
+                click2 = 0;
+                click3 = 0;
+                click4 = 0;
+                click5 = 0;
+                click6 = 0;
+                click7 = 0;
+                click8 = 0;
                 break;
         }
 
