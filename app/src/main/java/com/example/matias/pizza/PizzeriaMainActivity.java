@@ -43,9 +43,6 @@ public class PizzeriaMainActivity extends AppCompatActivity /*implements View.On
         text1.setText("Commande de la table n° " + numtab); //modification du texte
 
 
-        //Definition et liaison au OnClickListener du bouton de pizzapersonnalisé
-        //qui une fois qu'on a cliqué sur ce bouton fait apparaitre les ingrédients de la pizza au choix
-
         FragmentTransaction transaction = getFragmentManager().beginTransaction(); //création de la transaction
         transaction.add(R.id.fragment_container, fragment1);
         transaction.commit();       //contenue du fragment apparait

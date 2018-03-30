@@ -36,14 +36,15 @@ public class BlankFragment extends Fragment implements View.OnClickListener {
     static int click6;
     static int click7;
     static int click8;
+    BlankFragment2 fragment2 = new BlankFragment2();    //fragment apparaissant lors du click sur Pizza Personnalisé
+    public static int numtab;   //le numero de la table du client
 
-    public static int numtab;
 
     private String numtab2; //valeur prenant un 0 devant si 10> numtab > 0 pour ainsi envoyer sous le bon format le numtab au serveur
 
 
     public BlankFragment() {
-        // Required empty public constructor
+
     }
 
 
@@ -56,6 +57,7 @@ public class BlankFragment extends Fragment implements View.OnClickListener {
         // Code à compléter ; par exemple : button = (Button) v.findViewById(R;id.button);
 
         numtab = PizzeriaMainActivity.numtab;
+
 
 
 
@@ -139,7 +141,6 @@ public class BlankFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
 
             case R.id.buttonPers:
-                BlankFragment2 fragment2 = new BlankFragment2();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction(); //création de la transaction
                 transaction.replace(R.id.fragment_container, fragment2);
                 transaction.addToBackStack(null);
@@ -195,14 +196,8 @@ public class BlankFragment extends Fragment implements View.OnClickListener {
                 c8.execute(numtab2 + "Tiramisu");
                 break;
             case R.id.reinit:
-                click1 = 0;
-                click2 = 0;
-                click3 = 0;
-                click4 = 0;
-                click5 = 0;
-                click6 = 0;
-                click7 = 0;
-                click8 = 0;
+                reinitialisation();
+
                 break;
         }
 
@@ -223,6 +218,25 @@ public class BlankFragment extends Fragment implements View.OnClickListener {
         outState.putInt(getResources().getString(R.string.cle_But7), click7);
         outState.putInt(getResources().getString(R.string.cle_But8), click8);
 
+    }
+
+    public void reinitialisation(){
+        click1 = 0;
+        click2 = 0;
+        click3 = 0;
+        click4 = 0;
+        click5 = 0;
+        click6 = 0;
+        click7 = 0;
+        click8 = 0;
+        button1.setText("NAPOLITAINE");
+        button2.setText("ROYALE");
+        button3.setText("QUATRE FROMAGES");
+        button4.setText("MONTAGNARDE");
+        button5.setText("RACLETTE");
+        button6.setText("HAWAI");
+        button7.setText("PANNA COTA");
+        button8.setText("TIRAMISU");
     }
 
 }
