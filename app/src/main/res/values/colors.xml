@@ -7,4 +7,6 @@
     <color name="colorBordeaux">#6D071A</color>
     <color name="colorWhite">#FEFEFE</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorOrange">#FED343</color>
+    <color name="colorGreen">#0DDF0D</color>
 </resources>

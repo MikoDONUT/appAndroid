@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.matias.pizza">
 
     <application
@@ -17,6 +18,12 @@
 
         </activity>
 
+
+        <activity
+            android:name="com.example.matias.pizza.MyPreferenceActivity"
+            android:label="Preferences">
+        </activity>
+
         //Activité PizzeriaMainActivity2
         <activity android:name=".PizzeriaMainActivity2">
             <intent-filter>
@@ -24,13 +31,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity
-            >
+        </activity>
+
     </application>
 
     //Demandes d'accés internet
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    A
+
+
 
 </manifest>

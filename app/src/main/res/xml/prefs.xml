@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <preference-headers
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <header
+            android:fragment="your.package.MyPreferenceFragment"
+            android:title="Goto: Preference fragment"
+            android:summary="An example of some preferences." />
+
+    </preference-headers>
+
+
+    <PreferenceCategory
+        android:title="Paramètre">
+            <SwitchPreference
+                android:title="Changer couleur"
+                android:defaultValue="true"
+                android:key="CHANGE_COLOR"/>
+    </PreferenceCategory>
+</PreferenceScreen>

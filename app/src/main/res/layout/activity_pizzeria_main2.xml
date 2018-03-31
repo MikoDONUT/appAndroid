@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="@mipmap/fond_italie">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/colorOrange">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -23,7 +25,8 @@
                 android:layout_height="35dp"
                 android:text="N° place"
                 android:textSize="16dp"
-                android:textColor="@color/colorWhite"/>
+                android:textColor="@color/colorBlack"
+                android:textStyle="bold"/>
 
             <EditText
                 android:id="@+id/editText1"
@@ -38,6 +41,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Valider" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="ERREUR : numero positive et inférieur à 100 SVP"
+            android:textColor="@color/colorOrange"
+            android:id="@+id/text3"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 
